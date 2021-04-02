@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UserCart extends Model
@@ -37,7 +38,7 @@ class UserCart extends Model
     public $timestamps = true;
 
     /**
-     *
+     * The function define relation One To Many
      *
      * @return HasMany
      */
@@ -46,8 +47,13 @@ class UserCart extends Model
         return $this->hasMany(User::class);
     }
 
-    public function products():HasMany
+    /**
+     * The function define relation One to One
+     *
+     * @return HasOne
+     */
+    public function products():HasOne
     {
-        return $this->hasMany(Product::class);
+        return $this->hasOne(Product::class);
     }
 }

@@ -45,12 +45,22 @@ class Product extends Model
     }
 
     /**
-     * The function define relation One to Many(inversion)
+     * The function define relation One to One(inversion)
      *
      * @return BelongsTo
      */
     public function carts(): BelongsTo
     {
         return $this->belongsTo(UserCart::class);
+    }
+
+    /**
+     * The function define relation One to One(inversion)
+     *
+     * @return BelongsTo
+     */
+    public function transactionDetails(): BelongsTo
+    {
+        return $this->belongsTo(TransactionDetail::class);
     }
 }

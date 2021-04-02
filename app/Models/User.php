@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -63,7 +66,7 @@ class User extends Authenticatable
     /**
      * The function define relation One To One
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return HasOne
      */
     public function roles(){
         return $this->hasOne(Role::class);
@@ -72,9 +75,19 @@ class User extends Authenticatable
     /**
      * The function define relation One to Many
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function transactions(){
         return $this->hasMany(Transaction::class);
+    }
+
+    /**
+     * The function define relation One to Many(inversion)
+     *
+     * @return BelongsTo
+     */
+    public function carts(): BelongsTo
+    {
+        return $this->belongsTo(UserCart::class);
     }
 }

@@ -20,6 +20,8 @@ class Role extends Model
         'name'
     ];
 
+    public $timestamps = false;
+
     /**
      * The function define relation One To One(inversion)
      *

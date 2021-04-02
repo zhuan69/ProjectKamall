@@ -16,6 +16,7 @@ class CreateRolesTable extends Migration
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
             $table->enum('name',['Admin','Member']);
+            $table->date('deleted_at')->nullable();
         });
     }
 

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TransactionDetail extends Model
@@ -35,7 +36,23 @@ class TransactionDetail extends Model
         'qty'
     ];
 
-    public function transactions(){
+    /**
+     * The function define relation One to One
+     *
+     * @return HasOne
+     */
+    public function transactions(): HasOne
+    {
         return $this->hasOne(Transaction::class);
+    }
+
+    /**
+     * The function define relation One to One
+     *
+     * @return HasOne
+     */
+    public function products(): HasOne
+    {
+        return $this->hasOne(Product::class);
     }
 }

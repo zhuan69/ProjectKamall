@@ -19,6 +19,7 @@ class CreateUserCartsTable extends Migration
             $table->foreignId('products_id')->constrained()->onDelete('cascade');
             $table->integer('qty');
             $table->bigInteger('totalPrice');
+            $table->date('deleted_at')->nullable();
             $table->timestamps();
         });
     }

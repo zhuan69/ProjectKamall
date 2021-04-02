@@ -18,6 +18,7 @@ class CreateTransactionDetailsTable extends Migration
             $table->foreignId('transactions_id')->constrained()->onDelete('cascade');
             $table->foreignId('products_id')->constrained()->onDelete('cascade');
             $table->integer('qty');
+            $table->date('deleted_at')->nullable();
         });
     }
 

@@ -23,6 +23,7 @@ class CreateTransactionsTable extends Migration
             $table->double('discount');
             $table->enum('status',['Not Approved','Approved','Rejected','Cancel'])->default('Not Approved');
             $table->text('delivery_address');
+            $table->date('deleted_at')->nullable();
             $table->timestamps();
         });
     }
