@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\TransactionDetail;
+use App\Models\ProductImage;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class TransactionDetailFactory extends Factory
+class ProductImageFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = TransactionDetail::class;
+    protected $model = ProductImage::class;
 
     /**
      * Define the model's default state.
@@ -22,10 +22,8 @@ class TransactionDetailFactory extends Factory
     public function definition()
     {
         return [
-            'transactions_id'=>1,
-            'products_id'=>1,
-            'qty' => $this->faker->randomDigit(),
-            'price'=>$this->faker->randomNumber(9)
+            'image_name' => $this->faker->image(),
+            'products_id'=>1
         ];
     }
 }

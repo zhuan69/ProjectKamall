@@ -2,17 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\TransactionDetail;
+use App\Models\Model;
+use App\Models\SubCategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class TransactionDetailFactory extends Factory
+class SubCategoryFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = TransactionDetail::class;
+    protected $model = SubCategory::class;
 
     /**
      * Define the model's default state.
@@ -22,10 +23,9 @@ class TransactionDetailFactory extends Factory
     public function definition()
     {
         return [
-            'transactions_id'=>1,
-            'products_id'=>1,
-            'qty' => $this->faker->randomDigit(),
-            'price'=>$this->faker->randomNumber(9)
+            'sub_name' => 'Kemeja Pria',
+            'sub_description' => $this->faker->text,
+            'categories_id'=>1
         ];
     }
 }

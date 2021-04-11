@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductsTable extends Migration
+class CreateSubCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,12 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('sub_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description');
-            $table->integer('stock');
-            $table->bigInteger('price');
-            $table->enum('size', ['S', 'M', 'L', 'XL',])->default('M');
+            $table->string('sub_name');
+            $table->string('sub_description');
             $table->foreignId('categories_id')->constrained()->onDelete('cascade');
-            $table->double('discount');
-            $table->string('product_image');
             $table->date('deleted_at')->nullable();
-            $table->timestamps();
         });
     }
 
@@ -35,6 +29,6 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('sub_categories');
     }
 }
