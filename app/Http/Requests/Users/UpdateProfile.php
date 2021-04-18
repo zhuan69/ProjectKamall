@@ -26,7 +26,7 @@ class UpdateProfile extends FormRequest
         return [
             'username' => 'string|regex:/[A-Za-z0-9]/|unique:users|min:3',
             'password' => 'string|regex:/[A-Za-z0-0]/|min:4',
-            'name' => 'string|regex:/[^\W\s\d]/|max:255',
+            'name' => 'string|regex:/[A-Za-z]/|max:255',
             'email' => 'email|unique:users',
             'phone_number' => 'string|regex:/[0-9]/',
             'roles_id' => 'numeric',

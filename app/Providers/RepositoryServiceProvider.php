@@ -38,5 +38,10 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Interfaces\TransactionDetailInterface',
             'App\Repositories\TransactionDetailRepository'
         );
+
+        $this->app->bind(
+            'App\Interfaces\SubCategoryInterface',
+            'App\Repositories\SubCategoryRepository'
+        );
     }
 }
