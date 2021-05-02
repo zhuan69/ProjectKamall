@@ -1,14 +1,15 @@
 <?php
 
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Collection;
 
 interface ProductInterface{
     /**
      * Get all Product with Paginate
      *
-     * @return Product
+     * @return Collection
      */
-    public function findAll(): Product;
+    public function findAll(): Collection;
 
     /**
      * Get detail product
@@ -21,10 +22,10 @@ interface ProductInterface{
     /**
      * Get Product list based on category with Paginate
      *
-     * @param int $categoryId
+     * @param string $categoryName
      * @return Product
      */
-    public function findByCategory(int $categoryId): Product;
+    public function findByCategory(string $categoryName): Product;
 
     /**
      * Create a new Product

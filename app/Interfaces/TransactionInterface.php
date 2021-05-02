@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Transaction;
+use Illuminate\Database\Eloquent\Collection;
 
 interface TransactionInterface{
 
@@ -8,17 +9,17 @@ interface TransactionInterface{
      * Get Transaction Data by Status Filter
      *
      * @param string $status
-     * @return Transaction
+     * @return Transaction | Collection | null
      */
-    public function findByStatus(string $status): Transaction;
+    public function findByStatus(string $status);
 
     /**
      * Get Transaction history by user id and already paginate format
      *
      * @param int $userId
-     * @return Transaction
+     * @return Transaction | Collection | null
      */
-    public function findAllByUserId(int $userId): Transaction;
+    public function findAllByUserId(int $userId);
 
     /**
      * Create a new transaction

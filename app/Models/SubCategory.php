@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+
+/**
+ * @mixin Model
+ * Class SubCategory
+ * @package App\Models
+ */
 class SubCategory extends Model
 {
     use HasFactory, SoftDeletes;

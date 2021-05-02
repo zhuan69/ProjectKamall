@@ -5,25 +5,26 @@ namespace App\Repositories;
 
 
 use App\Models\Category;
+
 use CategoryInterface;
+use Illuminate\Database\Eloquent\Collection;
 
 class CategoryRepository implements CategoryInterface
 {
-
     /**
      * @inheritDoc
      */
-    public function findAll(): Category
+    public function findAll(): Collection
     {
-        // TODO: Implement findAll() method.
+        return Category::all();
     }
 
     /**
      * @inheritDoc
      */
-    public function findById(int $id): Category
+    public function findById(int $id)
     {
-        // TODO: Implement findById() method.
+        return Category::find($id)->first();
     }
 
     /**
@@ -31,7 +32,7 @@ class CategoryRepository implements CategoryInterface
      */
     public function findCategoryByName(string $categoryName): Category
     {
-        // TODO: Implement findCategoryByName() method.
+        return Category::where('name', $categoryName)->first();
     }
 
     /**
@@ -39,14 +40,14 @@ class CategoryRepository implements CategoryInterface
      */
     public function createCategory(array $data): Category
     {
-        // TODO: Implement createCategory() method.
+        return Category::create($data);
     }
 
     /**
      * @inheritDoc
      */
-    public function updateCategory(int $id): Category
+    public function updateCategory(int $id, array $data): bool
     {
-        // TODO: Implement updateCategory() method.
+        return Category::find($id)->update($data);
     }
 }

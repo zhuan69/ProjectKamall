@@ -1,15 +1,16 @@
 <?php
 
 use App\Models\TransactionDetail;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 interface  TransactionDetailInterface{
     /**
      * Get Transaction Detail by Transaction Id
      *
      * @param int $transactionId
-     * @return TransactionDetail
+     * @return TransactionDetail | ModelNotFoundException
      */
-    public function findByTransactionId(int $transactionId): TransactionDetail;
+    public function findByTransactionId(int $transactionId);
 
     /**
      * Create new transaction detail

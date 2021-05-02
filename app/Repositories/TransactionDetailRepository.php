@@ -5,6 +5,7 @@ namespace App\Repositories;
 
 
 use App\Models\TransactionDetail;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use TransactionDetailInterface;
 
 class TransactionDetailRepository implements TransactionDetailInterface
@@ -13,9 +14,13 @@ class TransactionDetailRepository implements TransactionDetailInterface
     /**
      * @inheritDoc
      */
-    public function findByTransactionId(int $transactionId): TransactionDetail
+    public function findByTransactionId(int $transactionId)
     {
-        // TODO: Implement findByTransactionId() method.
+        try {
+            return TransactionDetail::where('transactions_id', $transactionId)->first();
+        }catch (ModelNotFoundException $exception){
+            return $exception->getMessage();
+        }
     }
 
     /**
@@ -23,6 +28,6 @@ class TransactionDetailRepository implements TransactionDetailInterface
      */
     public function createDetail(array $data): TransactionDetail
     {
-        // TODO: Implement createDetail() method.
+        return TransactionDetail::create($data);
     }
 }

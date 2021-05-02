@@ -5,6 +5,8 @@ namespace App\Repositories;
 
 
 use App\Models\Role;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use RoleInterface;
 
 class RoleRepository implements RoleInterface
@@ -13,24 +15,32 @@ class RoleRepository implements RoleInterface
     /**
      * @inheritDoc
      */
-    public function findAll(): Role
+    public function findAll(): Collection
     {
-        // TODO: Implement findAll() method.
+        return Role::all();
     }
 
     /**
      * @inheritDoc
      */
-    public function findById(int $id): Role
+    public function findById(int $id)
     {
-        // TODO: Implement findById() method.
+        try {
+            return Role::find($id)->first();
+        }catch (ModelNotFoundException $exception){
+            return $exception->getMessage();
+        }
     }
 
     /**
      * @inheritDoc
      */
-    public function findByRoleName(string $roleName): Role
+    public function findByRoleName(string $roleName)
     {
-        // TODO: Implement findByRoleName() method.
+        try {
+            return Role::where('name', $roleName)->first();
+        }catch (ModelNotFoundException $exception){
+            return $exception->getMessage();
+        }
     }
 }

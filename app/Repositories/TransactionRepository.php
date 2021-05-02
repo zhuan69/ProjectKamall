@@ -5,6 +5,7 @@ namespace App\Repositories;
 
 
 use App\Models\Transaction;
+use Exception;
 use TransactionInterface;
 
 class TransactionRepository implements TransactionInterface
@@ -13,17 +14,25 @@ class TransactionRepository implements TransactionInterface
     /**
      * @inheritDoc
      */
-    public function findByStatus(string $status): Transaction
+    public function findByStatus(string $status)
     {
-        // TODO: Implement findByStatus() method.
+        try {
+            return Transaction::where('status', $status)->get();
+        } catch (Exception $exception) {
+            return $exception->getMessage();
+        }
     }
 
     /**
      * @inheritDoc
      */
-    public function findAllByUserId(int $userId): Transaction
+    public function findAllByUserId(int $userId)
     {
-        // TODO: Implement findAllByUserId() method.
+        try {
+            return Transaction::where('users_id', $userId)->get();
+        } catch (Exception $exception){
+            return $exception->getMessage();
+        }
     }
 
     /**
@@ -31,7 +40,7 @@ class TransactionRepository implements TransactionInterface
      */
     public function createTransaction(array $data): Transaction
     {
-        // TODO: Implement createTransaction() method.
+        return Transaction::create($data);
     }
 
     /**
@@ -39,7 +48,9 @@ class TransactionRepository implements TransactionInterface
      */
     public function cancelTransaction(int $id): Transaction
     {
-        // TODO: Implement cancelTransaction() method.
+        return Transaction::find($id)->update([
+            'status' => 'Cancel'
+        ]);
     }
 
     /**
@@ -47,6 +58,8 @@ class TransactionRepository implements TransactionInterface
      */
     public function approveTransaction(int $id): Transaction
     {
-        // TODO: Implement approveTransaction() method.
+        return Transaction::find($id)->update([
+            'status' => 'Approved'
+        ]);
     }
 }

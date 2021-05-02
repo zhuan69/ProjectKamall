@@ -5,6 +5,7 @@ namespace App\Repositories;
 
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use UserInterface;
 
 class UserRepository implements UserInterface
@@ -15,15 +16,19 @@ class UserRepository implements UserInterface
      */
     public function createUser(array $data): User
     {
-        // TODO: Implement createUser() method.
+        return User::create($data);
     }
 
     /**
      * @inheritDoc
      */
-    public function findById(int $id): User
+    public function findById(int $id)
     {
-        // TODO: Implement findById() method.
+        try{
+            return User::find($id)->first();
+        }catch (ModelNotFoundException $exception){
+            return $exception->getMessage();
+        }
     }
 
     /**
@@ -31,14 +36,18 @@ class UserRepository implements UserInterface
      */
     public function findByRoles(int $roleId): User
     {
-        // TODO: Implement findByRoles() method.
+        try {
+            return User::where('roles_id', $roleId)->first();
+        }catch (ModelNotFoundException $exception){
+            return $exception->getMessage();
+        }
     }
 
     /**
      * @inheritDoc
      */
-    public function updateProfile(int $id): User
+    public function updateProfile(int $id, array $data): bool
     {
-        // TODO: Implement updateProfile() method.
+        return User::find($id)->update($data);
     }
 }

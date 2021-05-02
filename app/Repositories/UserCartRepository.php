@@ -5,6 +5,7 @@ namespace App\Repositories;
 
 
 use App\Models\UserCart;
+use Illuminate\Database\Eloquent\Collection;
 use UserCartInterface;
 
 class UserCartRepository implements UserCartInterface
@@ -13,9 +14,10 @@ class UserCartRepository implements UserCartInterface
     /**
      * @inheritDoc
      */
-    public function getCart(int $userId): UserCart
+    public function getCart(int $userId): Collection
     {
-        // TODO: Implement getCart() method.
+        return UserCart::where('users_id', $userId)->get();
+
     }
 
     /**
@@ -23,22 +25,22 @@ class UserCartRepository implements UserCartInterface
      */
     public function createCart(array $data): UserCart
     {
-        // TODO: Implement createCart() method.
+        return UserCart::create($data);
     }
 
     /**
      * @inheritDoc
      */
-    public function updateCart(int $id): UserCart
+    public function updateCart(int $id, array $data): bool
     {
-        // TODO: Implement updateCart() method.
+        return UserCart::find($id)->update($data);
     }
 
     /**
      * @inheritDoc
      */
-    public function deleteItems(int $id): UserCart
+    public function deleteItems(int $id): bool
     {
-        // TODO: Implement deleteItems() method.
+        return UserCart::find($id)->delete();
     }
 }

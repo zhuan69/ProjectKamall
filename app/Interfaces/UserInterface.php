@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 interface UserInterface{
     /**
@@ -15,23 +16,23 @@ interface UserInterface{
      * Get detail user by id
      *
      * @param int $id
-     * @return User
+     * @return User | ModelNotFoundException
      */
-    public function findById(int $id): User;
+    public function findById(int $id);
 
     /**
      * Get detail user by roles
      *
      * @param int $roleId
-     * @return User
+     * @return User | ModelNotFoundException
      */
-    public function findByRoles(int $roleId): User;
+    public function findByRoles(int $roleId);
 
     /**
      * Update information user
      *
      * @param int $id
-     * @return User
+     * @return bool
      */
-    public function updateProfile(int $id): User;
+    public function updateProfile(int $id, array $data): bool;
 }

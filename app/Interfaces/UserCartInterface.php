@@ -1,15 +1,16 @@
 <?php
 
 use App\Models\UserCart;
+use Illuminate\Database\Eloquent\Collection;
 
 interface UserCartInterface{
     /**
      * Get cart data by user id
      *
      * @param int $userId
-     * @return UserCart
+     * @return UserCart | Collection | null
      */
-    public function getCart(int $userId): UserCart;
+    public function getCart(int $userId): Collection;
 
 
     /**
@@ -24,15 +25,15 @@ interface UserCartInterface{
      * Update cart data using cart id
      *
      * @param int $id
-     * @return UserCart
+     * @return bool
      */
-    public function updateCart(int $id): UserCart;
+    public function updateCart(int $id, array $data): bool;
 
     /**
      * Delete cart items lists by cart id
      *
      * @param int $id
-     * @return UserCart
+     * @return bool
      */
-    public function deleteItems(int $id): UserCart;
+    public function deleteItems(int $id): bool;
 }

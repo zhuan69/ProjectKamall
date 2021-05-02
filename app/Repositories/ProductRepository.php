@@ -5,17 +5,25 @@ namespace App\Repositories;
 
 
 use App\Models\Product;
+use CategoryInterface;
+use Illuminate\Database\Eloquent\Collection;
 use ProductInterface;
 
 class ProductRepository implements ProductInterface
 {
+    private CategoryInterface $category;
+
+    public function __construct(CategoryInterface $category)
+    {
+        $this->category = $category;
+    }
 
     /**
      * @inheritDoc
      */
-    public function findAll(): Product
+    public function findAll(): Collection
     {
-        // TODO: Implement findAll() method.
+        return Product::all();
     }
 
     /**
@@ -23,15 +31,16 @@ class ProductRepository implements ProductInterface
      */
     public function findById(int $id): Product
     {
-        // TODO: Implement findById() method.
+        return Product::find($id)->first();
     }
 
     /**
      * @inheritDoc
      */
-    public function findByCategory(int $categoryId): Product
+    public function findByCategory(string $categoryName): Product
     {
-        // TODO: Implement findByCategory() method.
+        $category = $this->category->findCategoryByName($categoryName);
+        return Product::where('categories_id', $category->id);
     }
 
     /**
@@ -39,7 +48,7 @@ class ProductRepository implements ProductInterface
      */
     public function createProduct(array $data): Product
     {
-        // TODO: Implement createProduct() method.
+        return Product::create($data);
     }
 
     /**
@@ -47,7 +56,7 @@ class ProductRepository implements ProductInterface
      */
     public function editProduct(int $id): Product
     {
-        // TODO: Implement editProduct() method.
+        return Product::find($id)->update();
     }
 
     /**
@@ -55,6 +64,6 @@ class ProductRepository implements ProductInterface
      */
     public function deleteProduct(int $id): Product
     {
-        // TODO: Implement deleteProduct() method.
+        return Product::find($id)->delete();
     }
 }
